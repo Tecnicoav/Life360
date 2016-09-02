@@ -29,17 +29,4 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
-    
-    function onDeviceReady() {
-    document.addEventListener("backbutton", backKeyDown, true);
-    }
-    
-    function backKeyDown() {
-        var cFirm = confirm("Are you sure you want to exit the application?");
-        if (cFirm == true) {
-            //Code to exit the application
-            navigator.app.exitApp();
-        }
-    }
-
 };
