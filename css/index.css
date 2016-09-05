@@ -15,7 +15,6 @@ body{
 header {
 	height: 50px;
 	background: #f4b541;
-	color: #fff;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
