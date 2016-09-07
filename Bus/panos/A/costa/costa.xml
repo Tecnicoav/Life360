@@ -1,0 +1,13 @@
+﻿<krpano>
+
+	<scene name="scene_costa" title="costa" onstart="" thumburl="thumb.jpg">
+
+		<preview url="preview.jpg" />
+
+		<image>
+			<cube url="pano_%s.jpg" />
+		</image>
+		
+	</scene>
+
+</krpano>
