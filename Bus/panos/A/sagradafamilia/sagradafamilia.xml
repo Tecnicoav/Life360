@@ -1,0 +1,15 @@
+﻿<krpano>
+
+
+	<scene name="scene_sagradafamilia" title="sagradafamilia" onstart="" thumburl="thumb.jpg">
+
+		<preview url="preview.jpg" />
+
+		<image>
+			<cube url="pano_%s.jpg" />
+		</image>
+		
+	</scene>
+
+
+</krpano>
