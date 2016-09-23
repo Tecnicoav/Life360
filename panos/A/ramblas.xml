@@ -1,0 +1,20 @@
+﻿<krpano>
+
+	<action name="goto">
+		mul(newdepth, depth, 2);
+		tween(depth, get(newdepth), 0.25);
+		tween(oy|alpha|rx, -400|0|45, 0.25, default, loadscene(%1, null, NOPREVIEW|MERGE|KEEPMOVING, BLEND(1)) );
+	</action>
+
+	<scene name="scene_ramblas" title="ramblas" onstart="" thumburl="thumb.jpg">
+
+		<preview url="ramblas/preview.jpg" />
+
+		<image>
+			<cube url="ramblas/pano_%s.jpg" />
+		</image>
+
+	</scene>
+
+
+</krpano>
