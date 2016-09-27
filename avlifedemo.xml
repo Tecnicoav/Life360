@@ -265,12 +265,12 @@
 
 
 	<!-- Carpeta -->
-		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="-7" url="panos/A/ramblas/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/A/ramblas.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="-13" url="panos/A/tours/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/A/tours.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 		<hotspot name="p1_txt"    style="thumb" zorder="2" ath="0" atv="-7" url="texts.png" crop="4|195|840|88" scale="0.2" oy="+82" enabled="false" />
 
-	<!-- Vestíbulo -->
-		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-50" atv="0" url="panos/A/vestibulo/thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/A/vestibulo.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
-		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="-50" atv="0" url="texts3.png" crop="4|195|840|88" scale="0.2" oy="+82" enabled="false" />
+	<!-- Phone -->
+		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="60" atv="-7" url="panos/A/skin/phone.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/A/contacto.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="60" atv="-7" url="texts.png" crop="4|195|840|88" scale="0.2" oy="+82" enabled="false" />
 
 
 	<!-- pano changing actions -->
