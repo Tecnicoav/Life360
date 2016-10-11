@@ -1,0 +1,83 @@
+﻿<krpano>
+
+	<style name="arrowspot" url="skin/pfeil1.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
+	<style name="arrowspot2" url="skin/pfeil1.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
+	<style name="arrowspoteye" url="skin/pfeil2.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
+	<style name="arrowspoteye2" url="skin/pfeil2.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
+	
+	<action name="goto">
+		mul(newdepth, depth, 2);
+		tween(depth, get(newdepth), 0.25);
+		tween(oy|alpha|rx, -400|0|45, 0.25, default, loadscene(%1, null, NOPREVIEW|MERGE|KEEPMOVING, BLEND(1)) );
+	</action>
+
+	<scene name="scene_auditorimedio" title="auditorimedio" onstart="" thumburl="thumb.jpg">
+
+		<preview url="auditorimedio/preview.jpg" />
+
+		<image prealign="0|90|0">
+			<cube url="auditorimedio/pano_%s.jpg" />
+		</image>
+
+		<hotspot name="spot_eingang"  style="arrowspot" ath="-125"     atv="-8"  rotate="0"   depth="13000"  onclick="goto(scene_vestibulo);" />
+		<hotspot name="spot_eye"  style="arrowspoteye" ath="75"     atv="1"  rotate="0"   depth="13000"  onclick="goto(scene_auditorifila1);" />
+		<hotspot name="spot_eye2"  style="arrowspoteye2" ath="89"     atv="-10"  rotate="0"   depth="13000"  onclick="goto(scene_auditoriatril);" />
+
+	</scene>
+
+	<scene name="scene_entrada1" title="entrada1" onstart="" thumburl="thumb.jpg">
+
+		<preview url="entrada1/preview.jpg" />
+
+		<image>
+			<cube url="entrada1/pano_%s.jpg" />
+		</image>
+
+		<hotspot name="spot_eingang"  style="arrowspot" ath="10"     atv="-8"  rotate="0"   depth="10000"  onclick="goto(scene_vestibulo);" />
+		
+	</scene>
+
+	<scene name="scene_vestibulo" title="vestibulo" onstart="" thumburl="thumb.jpg">
+
+		<preview url="vestibulo/preview.jpg" />
+
+		<image>
+			<cube url="vestibulo/pano_%s.jpg" />
+		</image>
+
+		<hotspot name="spot_eingang"  style="arrowspot" ath="-62"     atv="-1"  rotate="0"   depth="10000"  onclick="goto(scene_auditorimedio);" />
+		<hotspot name="spot_eingang2"  style="arrowspot2" ath="-210"     atv="-1"  rotate="0"   depth="10000"  onclick="goto(scene_entrada1);" />
+		
+	</scene>
+
+
+	<scene name="scene_auditorifila1" title="auditorifila1" onstart="" thumburl="thumb.jpg">
+
+		<preview url="auditorifila1/preview.jpg" />
+
+		<image prealign="0|90|0">
+			<cube url="auditorifila1/pano_%s.jpg" />
+		</image>
+
+		<hotspot name="spot_eingang"  style="arrowspot" ath="87"     atv="-6"  rotate="0"   depth="13000"  onclick="goto(scene_vestibulo);" />
+		<hotspot name="spot_eye"  style="arrowspoteye" ath="100"     atv="1"  rotate="0"   depth="13000"  onclick="goto(scene_auditorimedio);" />
+		<hotspot name="spot_eye2"  style="arrowspoteye2" ath="-30"     atv="-15"  rotate="0"   depth="10000"  onclick="goto(scene_auditoriatril);" />
+
+	</scene>
+
+	<scene name="scene_auditoriatril" title="auditoriatril" onstart="" thumburl="thumb.jpg">
+
+		<preview url="auditoriatril/preview.jpg" />
+
+		<image prealign="0|90|0">
+			<cube url="auditoriatril/pano_%s.jpg" />
+		</image>
+
+		<hotspot name="spot_eingang"  style="arrowspot" ath="75"     atv="-8"  rotate="0"   depth="13000"  onclick="goto(scene_vestibulo);" />
+		<hotspot name="spot_eye"  style="arrowspoteye" ath="93"     atv="0"  rotate="0"   depth="13000"  onclick="goto(scene_auditorimedio);" />
+		<hotspot name="spot_eye2"  style="arrowspoteye2" ath="120"     atv="20"  rotate="0"   depth="10000"  onclick="goto(scene_auditorifila1);" />
+
+	</scene>
+
+
+</krpano>
