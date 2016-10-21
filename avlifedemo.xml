@@ -2,38 +2,29 @@
 
 	<include url="contextmenu.xml" />
 
-	<!-- webvr.xml - WebVR plugin, enter/exit VR buttons, VR cursor, VR setup -->
 	<include url="%SWFPATH%/plugins/webvr.xml" />
 
-	<!-- add/overwrite some settings from the webvr.xml for this example 
-		- enable the fake mode
-		- add events for portrait usage
-	-->
 	<plugin name="WebVR"
 	        mobilevr_fake_support="true"
 	        onentervr="webvr_onentervr(); webvr_act_as_gyro_in_portrait_mode(true);"
 	        />
 
-	<!-- re-align the vr button and 'auto-start' the video when pressing the enterVR button -->
 	<layer name="webvr_enterbutton"
 	       align="bottom" y="10%"
 	       ondown="video_auto_start();"
 	       />
 
-	<!-- loading bar events -->
 	<events name="loadingbar" keep="true"
 	        onxmlcomplete="loadingbar_startloading();"
 	        onloadcomplete="delayedcall(0.25, loadingbar_stoploading() );"
 	        />
 
-	<!-- loading bar graphics -->
 	<layer name="loadingbar_bg" keep="true" type="container" bgcolor="0x000000" bgalpha="0.5" align="bottom" y="25%" width="33%" height="20" enabled="false" visible="false">
 		<layer name="loadingbar_space" type="container" align="left" x="4" width="-8" height="12">
 			<layer name="loadingbar_fill" type="container" bgcolor="0xFFFFFF" bgalpha="1.0" align="lefttop" width="0" height="100%" />
 		</layer>
 	</layer>
 
-	<!-- loading bar actions -->
 	<action name="loadingbar_startloading">
 		set(loadingbar_isloading, true);
 		set(layer[loadingbar_bg].visible, true);
@@ -61,12 +52,10 @@
 			if(aspect != lastaspect OR '%1' == 'true',
 				copy(lastaspect, aspect);
 				if(stagewidth GT stageheight,
-					<!-- landscape orientation - use stereo rendering and a direct/fast gyro sensor mode -->
 					set(display.stereo, true);
 					set(webvr.mobilevr_sensor_mode, 3);
 					webvr.update();
 				  ,
-					<!-- portrait orientation - use normal rendering and a smoother/slower gyro sensor mode -->
 					set(display.stereo, false);
 					set(webvr.mobilevr_sensor_mode, 1);
 					webvr.update();
@@ -78,37 +67,14 @@
 	</action>
 
 
-	<!-- allow scene switching by the PageUp/PageDown keys -->
 	<events name="keybcontrol" keep="true" onkeyup="if(keycode == 33, nextscene_loop(-1)); if(keycode == 34, nextscene_loop(+1));" />
 
-
-	<!-- the intro pano image -->
 	<view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
 	<preview url="panos/intro/preview.jpg" />
 	<image>
 		<cube url="panos/intro/pano_%s.jpg" />
 	</image>
 
-
-	<!--
-		SPECIAL CASE FOR THE VIDEO PANO ON MOBILE DEVICES
-		- on mobile devices its only possible to start a video by as reaction to
-		  a touch-input of the user (a given limitation by the browsers)
-		- but this will be problemtic when using a VR-navigation without any touching,
-		  taking off the headset and touching to start the video would be bad...
-		- as workaround load the video already on startup and use the first
-		  touch on the screen (e.g. the touch to the 'Enter VR' button) to
-		  start playing the video
-		- the video itself will be directly paused after having started and
-		  not shown on the screen (visible=false)
-		- additionally there the new setting 'use_as_videopano' that prepares
-		  the video for a later (=in an other scene) usage as video pano
-	-->
-
-	<!-- SPECIAL CASE END -->
-
-
-	<!-- the VR menu - home button, prev/next scene buttons -->
 	<style name="vr_menu_style" depth="800" scale="0.2" distorted="true" ath="0" atv="45" alpha="0.25" visible="false" />
 
 	<hotspot name="vr_menu_bg"   style="vr_menu_style" keep="true" zorder="5" url="black.png" width="600" height="120" onover="vr_menu_over();" onout="vr_menu_out();" handcursor="false" />
@@ -155,7 +121,6 @@
 
 	<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
 
-	<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
 	<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 		var hs1 = krpano.get("hotspot[vr_menu_bg]");
@@ -201,7 +166,6 @@
 
 	]]></action>
 
-	<!-- a simpler non-VR fallback version for Flash -->
 	<action name="vr_menu_following" devices="flash">
 		copy(h,view.hlookat);
 		copy(v,view.vlookat);
@@ -231,10 +195,6 @@
 	</action>
 
 
-
-	<!-- the intro scene 3d hotspots -->
-
-	<!-- krpano VR logo -->
 	<hotspot name="krpanologo" distorted="true" enabled="false"
 	         url="texts.png" crop="0|0|440|90"
 	         ath="-6" atv="0"
@@ -242,13 +202,11 @@
 	         ty="-1000"
 	         />
 
-	<!-- the floor platform -->
 	<hotspot name="floor" zorder="1" distorted="true" enabled="false"
 	         url="black.png" width="250" height="250" alpha="0.5"
 	         depth="0" rx="-90" ty="500"
 	         />
 
-	<!-- start button -->
 	<hotspot name="start" distorted="true"
 	         url="texts.png" crop="60|450|730|100"
 	         ath="0" atv="0"
@@ -261,7 +219,6 @@
 	         />
 
 
-	<!-- start animation -->
 	<action name="start_vr">
 		set(start_ty, 10000);
 		set(start_tt, 3.0);
@@ -289,20 +246,16 @@
 		</action>
 
 
-	<!-- panel/thumb styles -->
 	<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" width="280" height="180" alpha="0.0" depth="700" ty="75"  />
 	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
 
 
-	<!-- Carpeta -->
 		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="-13" url="panos/A/tours/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/A/tours.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 		<hotspot name="p1_txt"    style="thumb" zorder="2" ath="0" atv="-7" url="texts.png" crop="4|195|840|88" scale="0.2" oy="+82" enabled="false" />
 
-	<!-- Phone -->
 		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="60" atv="-7" url="panos/A/skin/phone.png" scale="0.5" ox="0" oy="-10" onclick="openurl(Academia/index.html);" />
 
 
-	<!-- pano changing actions -->
 	<action name="changepano">
 		for(set(i,0), i LT hotspot.count, inc(i),
 			if(hotspot[get(i)].style == 'thumb', set(hotspot[get(i)].enabled, false); );
